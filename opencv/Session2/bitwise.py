@@ -5,6 +5,9 @@ import numpy as np
 
 blank = np.zeros((400,400), dtype='uint8')
 
+# Mã sử dụng phương thức .copy() của mảng blank để tạo một bản sao của 
+# hình ảnh ban đầu. Điều này đảm bảo rằng hình ảnh gốc (blank) không bị 
+# ảnh hưởng bởi hàm vẽ chữ nhật.
 rectangle = cv.rectangle(blank.copy(), (30,30), (370,370), 255, -1)
 circle = cv.circle(blank.copy(), (200,200), 200, 255, -1)
 
