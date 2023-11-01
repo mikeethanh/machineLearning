@@ -126,7 +126,7 @@ print('Training done ---------------')
 features = np.array(features, dtype='object')
 labels = np.array(labels)
 
-face_recognizer = cv.face.LBPHFaceRecognizer_create()
+face_recognizer = cv.face.LBPHFaceRecognizer.create()
 
 # Train the Recognizer on the features list and the labels list
 face_recognizer.train(features,labels)
