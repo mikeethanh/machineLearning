@@ -82,6 +82,14 @@ def create_train():
                 # cách sử dụng tọa độ x, y, w, và h của hộp chữ nhật. Điều này có nghĩa 
                 # là nó cắt ra vùng chứa khuôn mặt từ hình ảnh xám và lưu trữ nó trong 
                 # biến faces_roi.
+
+                # iệc trích xuất hình ảnh con (ROI - Region of Interest) từ hình ảnh gốc là một phần quan trọng trong quá trình xử lý hình ảnh và thường được thực hiện khi bạn chỉ quan tâm đến một phần cụ thể của hình ảnh. Trong trường hợp xác định khuôn mặt, việc trích xuất vùng chứa khuôn mặt từ hình ảnh gốc có ích vì:
+
+                # Tính toán hiệu quả: Nếu bạn chỉ muốn xử lý khuôn mặt và không quan tâm đến phần còn lại của hình ảnh, thì việc trích xuất một ROI giúp giảm thiểu số lượng pixel cần xử lý, làm tăng tính hiệu quả của quá trình xử lý.
+
+                # Phân tích đặc trưng cụ thể: Trong quá trình nhận dạng khuôn mặt hoặc phân tích đặc trưng khuôn mặt, việc làm việc chỉ trên vùng chứa khuôn mặt giúp tập trung vào đặc trưng quan trọng của khuôn mặt, chẳng hạn như mắt, miệng, hoặc mũi.
+
+                # Tách biệt các đối tượng: Nếu có nhiều khuôn mặt trong hình ảnh, việc trích xuất ROI cho mỗi khuôn mặt giúp tách biệt chúng và xử lý từng khuôn mặt một.
                 faces_roi = gray[y:y+h, x:x+w]
                 # Sau khi trích xuất thành công vùng khuôn mặt (faces_roi), nó được thêm 
                 # vào danh sách features. Danh sách này chứa các vùng khuôn mặt của tất 
@@ -126,9 +134,44 @@ print('Training done ---------------')
 features = np.array(features, dtype='object')
 labels = np.array(labels)
 
+# Dòng mã face_recognizer = cv.face.LBPHFaceRecognizer.create() trong OpenCV được sử dụng để tạo một đối tượng phân loại khuôn mặt sử dụng phương pháp nhận dạng khuôn mặt LBPH 
+# (Local Binary Pattern Histograms).
+
+# LBPH (Local Binary Pattern Histograms) là một phương pháp phân loại và nhận dạng khuôn mặt dựa trên đặc trưng cục bộ của hình ảnh. Nó hoạt động bằng cách tính toán histogram 
+# của các mẫu nhị phân cục bộ trong vùng xung quanh từng điểm pixel trên khuôn mặt. Các histogram này sau đó được sử dụng để mô tả và nhận dạng khuôn mặt.
+
+# Dòng mã trên tạo một đối tượng face_recognizer sử dụng phương pháp nhận dạng khuôn mặt LBPH. Sau khi tạo đối tượng này, bạn có thể sử dụng các phương thức của nó để huấn luyện
+#  mô hình nhận dạng khuôn mặt trên dữ liệu huấn luyện và sau đó sử dụng mô hình đã huấn luyện để nhận dạng khuôn mặt trong các hình ảnh mới.
+
+# Dưới đây là một số phương thức phổ biến của đối tượng face_recognizer:
+
+# train(faces, labels): Phương thức này được sử dụng để huấn luyện mô hình nhận dạng khuôn mặt trên dữ liệu huấn luyện. faces là danh sách các khuôn mặt đã được trích xuất từ hình
+#  ảnh, và labels là danh sách nhãn tương ứng với mỗi khuôn mặt.
+
+# predict(face): Phương thức này được sử dụng để nhận dạng một khuôn mặt đã được trích xuất từ hình ảnh. Nó trả về nhãn của khuôn mặt và khoảng cách (độ tương đồng) giữa khuôn mặt
+#  này và mẫu đã huấn luyện.
+
+# read(filename): Đọc mô hình nhận dạng khuôn mặt từ tệp đã lưu.
+
+# write(filename): Lưu mô hình nhận dạng khuôn mặt vào một tệp.
+
+# Với mô hình LBPH, bạn có thể thực hiện nhận dạng khuôn mặt trong các tình huống thực tế sau khi đã huấn luyện mô hình trên dữ liệu huấn luyện phù hợp.
 face_recognizer = cv.face.LBPHFaceRecognizer.create()
 
 # Train the Recognizer on the features list and the labels list
+# Dòng mã face_recognizer.train(features, labels) được sử dụng để huấn luyện mô hình nhận dạng khuôn mặt bằng cách cung cấn danh sách các khuôn mặt đã trích xuất từ hình ảnh
+#  (features) và danh sách nhãn tương ứng với mỗi khuôn mặt (labels).
+
+# features: Đây là danh sách các khuôn mặt đã được trích xuất từ hình ảnh. Mỗi khuôn mặt thường được biểu diễn dưới dạng một mảng hoặc vector chứa các đặc trưng cụ thể của khuôn mặt.
+#  Thông thường, các đặc trưng này đã được trích xuất từ khuôn mặt, chẳng hạn như thông qua phương pháp như LBPH hoặc Eigenfaces.
+
+# labels: Đây là danh sách các nhãn tương ứng với mỗi khuôn mặt trong features. Nhãn cho biết danh tính hoặc thông tin liên quan đến mỗi khuôn mặt. Ví dụ, nếu bạn đang xây dựng một
+#  hệ thống nhận dạng khuôn mặt cho nhiều người, các nhãn có thể là số ID hoặc tên của từng người.
+
+# Sau khi đào tạo mô hình bằng dòng mã này, mô hình sẽ được tối ưu hóa để nhận dạng các khuôn mặt dựa trên các đặc trưng và thông tin nhãn mà bạn đã cung cấp trong quá trình huấn luyện.
+#  Mô hình có thể sau đó được sử dụng để nhận dạng khuôn mặt trong các hình ảnh mới.
+
+# Lưu ý rằng việc đào tạo mô hình có thể yêu cầu một lượng lớn dữ liệu huấn luyện và có thể mất một thời gian đáng kể để hoàn thành quá trình này.
 face_recognizer.train(features,labels)
 
 # Dòng này sử dụng phương thức .save() của mô hình face_recognizer để lưu trữ mô
@@ -156,3 +199,10 @@ np.save('labels.npy', labels)
 #  lý dữ liệu đa chiều. Tệp .npy chứa dữ liệu đã được lưu trữ dưới dạng mảng NumPy. Điều này có
 #  lợi ích làm cho việc lưu trữ và tải dữ liệu hiệu quả hơn, đồng thời bảo đảm tính nhất quán về 
 # kiểu dữ liệu và kích thước dữ liệu.
+
+# 
+# Dòng mã YAML mà bạn đưa ra là một mảng dữ liệu (data) được lưu trữ dưới dạng các giá trị số thực (floats) và được biểu diễn dưới dạng một ma trận (matrix). Ma trận này đại diện cho dữ liệu histogram của các đặc trưng LBPH đã được mô hình học từ dữ liệu đào tạo. Histograms chứa thông tin về cách mà mô hình đã học và biểu diễn các đặc trưng của khuôn mặt từ dữ liệu đào tạo.
+
+# Thông tin trong ma trận này bao gồm các giá trị số thực (floats) đại diện cho mức độ xuất hiện của các đặc trưng cụ thể trong dữ liệu đào tạo. Cụ thể, mỗi giá trị trong ma trận đại diện cho mức độ xuất hiện của một đặc trưng cụ thể trong một số lượng lân cận xung quanh từng điểm pixel trên khuôn mặt. Thông tin này đã được học từ dữ liệu đào tạo và được sử dụng trong quá trình nhận dạng khuôn mặt.
+
+# Ma trận này có kích thước được xác định bởi rows và cols, trong đó rows là số lượng hàng và cols là số lượng cột. Dữ liệu histogram được lưu trữ dưới dạng một mảng 1D (flatten) với số lượng giá trị tương ứng với rows và cols.

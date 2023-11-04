@@ -32,6 +32,8 @@ cv.imshow('Thresh_invert',thresh_inv)
 
 
 # adaptive thresholding
+# Dòng mã adaptive_thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY, 11, 3) trong OpenCV được sử dụng để thực hiện phép 
+# xác định ngưỡng thích nghi (adaptive thresholding) trên hình ảnh xám (grayscale image). Phép xác định ngưỡng thích nghi cho phép bạn điều chỉnh ngưỡng cường độ tại mỗi vùng trên hình ảnh dựa trên thông tin cục bộ, giúp cải thiện quá trình xác định biên và nhận dạng đối tượng trong các hình ảnh có cường độ không đồng nhất hoặc nhiễu.
 
 # Đây là kích thước của khu vực lân cận (neighborhood) được 
 # sử dụng để tính giá trị trung bình cho phép ngưỡng thích 
