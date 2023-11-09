@@ -1,0 +1,53 @@
+Popular linear regression(lease square )
+y = ax + b 
+co rat nhieu cach , rat nhieu duong thang de bieu dien cac ddiem du lieu , 
+Nhung trong liner regression thi chon duong cos tong binh phuong khoang cach
+den cac diem du lieu nho nhat 
+
+su dung decent method
+. Training: Tìm đường thẳng (model) gần các điểm trên nhất. Mọi người có thể vẽ ngay được
+đường thẳng mô tả dữ liệu từ hình 1, nhưng máy tính thì không, nó phải đi tìm bằng thuật
+toán Gradient descent ở phía dưới. (Từ model và đường thẳng được dùng thay thế lẫn nhau
+trong phần còn lại của bài này)
+Prediction: Dự đoán xem giá của ngôi nhà 50 mcó giá bao nhiêu dựa trên đường tìm được ở
+phần trên
+
+.J được gọi là loss function, hàm để đánh giá xem bộ tham số hiện tại có tốt với dữ liệu không.
+=> Bài toán tìm đường thẳng gần các điểm dữ liệu nhất trở thành tìm w0,w1 sao cho hàm J
+đạt giá trị nhỏ nhất.
+Tóm tắt: Cần tìm đường thẳng (model) fit nhất với dữ liệu, tương ứng với việc tìm tham số
+w0,w1 để cực tiểu hóa hàm J.
+Giờ cần một thuật toán để tìm giá trị nhỏ nhất của hàm J(w0, w1). Đó chính là thuật toán gradient
+descent.
+
+
+////////////////////////////////////////////////////////////////
+thuat toan gradient descent
+Có nhiều người có thể tính được đạo hàm của hàm f(x) = x2 hay f(x) = sin(cos(x)) nhưng vẫn
+không biết thực sự đạo hàm là gì. Theo tiếng hán đạo là con đường, hàm là hàm số nên đạo hàm chỉ
+sự biến đổi của hàm số hay có tên thân thương hơn là độ dốc của đồ thị
+
+Gradient descent là thuật toán tìm giá trị nhỏ nhất của hàm số f(x) dựa trên đạo hàm. Thuật toán:
+1. Khởi tạo giá trị x = x0 tùy ý
+2. Gán x = x - learning_rate * f’(x) ( learning_rate là hằng số dương ví dụ learning_rate = 0.001)
+3. Tính lại f(x): Nếu f(x) đủ nhỏ thì dừng lại, ngược lại tiếp tục bước 2
+
+Thuật toán sẽ lặp lại bước 2 một số lần đủ lớn (100 hoặc 1000 lần tùy vào bài toán và hệ số
+learning_rate) cho đến khi f(x) đạt giá trị đủ nhỏ
+
+Việc chọn hệ số learning_rate cực kì quan trọng, có 3 trường hợp:
+• Nếu learning_rate nhỏ: mỗi lần hàm số giảm rất ít nên cần rất nhiều lần thực hiện bước 2 để
+hàm số đạt giá trị nhỏ nhất.
+• Nếu learning_rate hợp lý: sau một số lần lặp bước 2 vừa phải thì hàm sẽ đạt giá trị đủ nhỏ.
+• Nếu learning_rate quá lớn: sẽ gây hiện tượng overshoot (như trong hình 3.8) và không bao
+giờ đạt được giá trị nhỏ nhất của hàm
+
+Mean Absolute Error, L1 Loss
+Mean Absolute Error (MAE) hay còn được gọi là L1 Loss là một loss function được sử dụng cho
+các mô hình hồi quy, đặc biệt cho các mô hình hồi quy tuyến tính. MAE được tính bằng tổng các
+trị tuyệt đối của hiệu giữa giá trị thực (yi: target) và giá trị mà mô hình của chúng ra dự đoán (yi:predicted)
+
+Mean Square Error, L2 Loss
+Mean Square Error (MSE) hay còn được gọi là L2 Loss là một loss function cũng được sử dụng
+cho các mô hình hồi quy, đặc biệt là các mô hình hồi quy tuyến tính. MSE được tính bằng tổng các
+bình phương của hiệu giữa giá trị thực (y: target) và giá trị mà mô hình của chúng ra dự đoán (yi:predicted)
