@@ -1,0 +1,57 @@
+Bài trước học về linear regression với đầu ra là giá trị thực, thì ở bài này sẽ giới thiệu thuật toán
+logistic regression với đầu ra là giá trị nhị phân (0 hoặc 1), ví dụ: email gửi đến hòm thư của bạn có
+phải spam hay không; u là u lành tính hay ác tính,...
+
+Hay trong nhiều trường hợp khác trong bài toán phân loại người ta quan tâm hơn đến xác suất hay
+vì chỉ 1 hay 0. Ví dụ: bác sĩ sẽ thông báo ca mổ này 80% thành công cho người nhà bệnh nhân
+
+4.2 Xác suất
+Bạn được học xác suất từ cấp hai, cấp ba rồi đến toán cao cấp, nhưng có bao giờ bạn hỏi tại sao lại
+có xác suất không? Vì trong cuộc sống này có những sự việc không chắc chắn, ví dụ ngày mai trời
+có mưa không. Vậy nên xác suất ra đời để đo lường sự không chắc chắn ấy.
+
+Vậy xác suất là gì? "Các nhà toán học coi xác suất là các số trong khoảng [0,1], được gán tương ứng
+với một biến cố mà khả năng xảy ra hoặc không xảy ra là ngẫu nhiên" [28]. Ví dụ bạn tung đồng xu
+có 2 mặt, thì xác suất bạn tung được mặt ngửa là 50% ( = 50/100 = 0.5)
+
+4.3 Hàm sigmoid
+Giờ ta cần tìm xác suất của hồ sơ mới nên cho vay. Hay giá trị của hàm cần trong khoảng [0,1]. Rõ
+ràng là giá trị của phương trình đường thẳng như bài trước có thể ra ngoài khoảng [0,1] nên cần
+một hàm mới luôn có giá trị trong khoảng [0,1]. Đó là hàm sigmoid.
+
+4.4 Thiết lập bài toán
+Mọi người có để ý các bước trong bài linear regression không nhỉ, các bước bao gồm:
+1. Visualize dữ liệu
+2. Thiết lập model
+3. Thiết lập loss function
+4. Tìm tham số bằng việc tối ưu loss function
+5. Dự đoán dữ liệu mới bằng model vừa tìm được
+Đây là mô hình chung cho bài toán trong Deep Learning.
+
+
+4.4.2 Loss function
+Giờ cũng cần một hàm để đánh giá độ tốt của model. Như bài trước là yˆ càng gần y càng tốt, giờ
+cũng vậy:
+• Nếu hồ sơ thứ i là cho vay, tức yi = 1 thì ta cũng mong muốn yˆi càng gần 1 càng tốt hay model
+dự đoán xác suất người thứ i được vay vốn càng cao càng tốt.
+• Nếu hồ sơ thứ i không được vay, tức yi = 0 thì ta cũng mong muốn yˆi càng gần 0 càng tốt hay
+model dự đoán xác suất người thứ i được vay vốn càng thấp càng tốt.
+Với mỗi điểm (x
+(i)
+, yi), gọi hàm loss function L = −(yi ∗ log(yˆi) + (1−yi) ∗ log(1−yˆi)), loss function này có tên gọi là binary_crossentropy
+
+
+Hàm L nhỏ khi giá trị model dự đoán gần với giá trị thật và rất lớn khi model dự đoán sai, hay
+nói cách khác L càng nhỏ thì model dự đoán càng gần với giá trị thật. => Bài toán tìm model trở
+thành tìm giá trị nhỏ nhất của L
+
+4.5 Chain rule
+
+4.7 Ứng dụng
+• Spam detection: Dự đoán mail gửi đến hòm thư của bạn có phải spam hay không.
+• Credit card fraud: Dự đoán giao dịch ngân hàng có phải gian lận không.
+• Health: Dự đoán 1 u là u lành hay u ác tính.
+• Banking: Dự đoán khoản vay có trả được hay không.
+• Investment: Dự đoán khoản đầu tư vào start-up có sinh lợi hay không.
+
+

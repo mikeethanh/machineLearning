@@ -95,3 +95,41 @@ k = np.load('w2.npz')
 lrg.intercept_ = k['a']
 lrg.coef_ = k['b']
 
+
+# Linear regression la mot thuat toan giu[ giai quyet cac bai toan co au ra la gia tri thuc te 
+
+# dua vao cac thong tin ma de bai cho vi du , gia tien phu thuoc vao dien tich , phong ngu , bla blo
+# y = ax1 + bx2 +cx3 + d-> hay goi cach khac y = w1x1 + w2x2 +w3x3 + w4
+# x1 la dien tich 
+# x2 la phong ngu 
+# x3 ... goi chung la cac thuoc tinh 
+
+# vay viec minh can lam la tinh cac w1 w2 3 w4 hay con goi la cac trong so sao cho 
+# fit nhat voi du lieu dau vao 
+
+# tinh bang cach nao : 
+# gia su w1 w2 w3 w4 co cac gia tri ban dau la 1 , 2 , 3 
+# neu cho cac gia tri dau vao nhuw the thi gia tri du doan su co muc chenh
+# lech rat lon so voi gia tri thuc te hay con goi la loss function
+
+# lossfunction co hai loai la MSE va MAE
+
+# vay moi sinh ra thuat toan gradient de tim gia tri nho nhat cua ham lossfunction 
+# tuc la tinh do chenh lech nho nhat 
+
+# thuat toan gradient decent
+# 1. Khởi tạo giá trị x = x0 tùy ý
+# 2. Gán x = x - learning_rate * f’(x) ( learning_rate là hằng số dương ví dụ learning_rate = 0.001)
+# 3. Tính lại f(x): Nếu f(x) đủ nhỏ thì dừng lại, ngược lại tiếp tục bước 2
+
+# sau khi tim duoc do chenh lech nho nhat
+# thi minh se tim ra duoc cac trong so them cong thuc cua gradient decent 
+# 
+# vay de bieu dien bai toa ntren duoi dang code ta bieu dien duoi dang ma tran 
+# ma tran x voi 1 hang n cot (cac thuoc tinh , gia tri cua dien tich ) 
+# ma tran y voi 1 hang n cot (gia tri thuc , gia nha thuc te ) 
+# sau do them mot hang vao truc x bieu dien cho he so tu do 
+
+# sau khi them mot hang va otruc x de bieu dien he so tu do r ta nhan ma tran x voi ma tran w
+# ma tran w la cac trong so 
+
