@@ -67,9 +67,9 @@ x1 = 50
 y1 = w[0] + w[1] * x1
 print('Giá nhà cho 50m^2 là : ', y1)
 # Lưu w với numpy.save(), định dạng '.npy'
-# np.save('weight.npy', w)
+np.save('weight.npy', w)
 # Đọc file '.npy' chứa tham số weight
-# w = np.load('weight.npy')
+w = np.load('weight.npy')
 
 
 # LinearRegression với thư viện sklearn
