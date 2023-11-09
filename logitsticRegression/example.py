@@ -84,3 +84,20 @@ k = np.load('w logistic.npz')
 logreg.intercept_ = k['a']
 logreg.coef_ = k['b']
 
+
+# su dung thuat toan logistic regression de giai cac bai toa nco dau ra nhi phan 
+# 0 va 1 , hay dung va sai 
+
+# B1 la visualization du lieu 
+
+# vi bai toan nay co dau ra la nam trong khoang tu 0 den 1 , chinh vi vay 
+# khong thu su dung phuong trinh duong thang ma thay vao do dung han sigmoid 
+# y = 1/1+e mu - (w0 + w1x1 +w2*x2+w3x3)
+
+# loss function o bai nay khong phai la MSE hay MAE nua ma goi la binary_crossentropy
+# L = −(yi ∗ log(yˆi) + (1−yi) ∗ log(1−yˆi))
+
+# va bai nay muon dao ham duoc ham L thi phai ap dung chain rules , ap ung chain rupes 
+# de thuc hien thuat toan gradient decent de dang hon
+#  
+
