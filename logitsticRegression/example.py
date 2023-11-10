@@ -85,7 +85,7 @@ logreg.intercept_ = k['a']
 logreg.coef_ = k['b']
 
 
-# su dung thuat toan logistic regression de giai cac bai toa nco dau ra nhi phan 
+# su dung thuat toan logistic regression de giai cac bai toan co dau ra nhi phan 
 # 0 va 1 , hay dung va sai 
 
 # B1 la visualization du lieu 
