@@ -19,7 +19,7 @@ face_recognizer.read('./opencv/Session3Face/face_trained.yml')
 # ây là một hàm của thư viện OpenCV để đọc hình ảnh từ một tệp ảnh. Hàm này chấp nhận
 #  đường dẫn đến tệp ảnh và trả về một mảng NumPy chứa dữ liệu hình ảnh.
 #  Trong trường hợp này, hình ảnh được đọc từ đường dẫn đã được chỉ định
-img = cv.imread(r'F:\machineLearning\opencv\Faces\val\elton_john\1.jpg')
+img = cv.imread(r'E:\code\machineLearning\opencv\Faces\val\elton_john\1.jpg')
 
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 cv.imshow('Person', gray)
