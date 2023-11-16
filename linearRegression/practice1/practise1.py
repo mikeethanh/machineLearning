@@ -24,6 +24,8 @@ learning_rate = 0.0001
 # Khởi tạo các hệ số
 w = np.array([0., 1.]).reshape(-1, 1)
 
+# 
+
 # Gradient Descent
 for i in range(num_iterations):
     y_pred = np.dot(X_b, w)
