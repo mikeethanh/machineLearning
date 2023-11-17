@@ -48,4 +48,47 @@ for i in range(numOfIteration):
     numloop.append(i)
 numloop = np.array(numloop)
 # sai so khoi dau
-print()
+print('sai so khoi dau : '+ str(cost[0]))
+# sai so cuoi cung
+print('sai so cuoi cung:' +str(cost[999]))
+# Trong so cuoi cung
+print(w)
+print('Loss function')
+plt.plot(numloop,cost)
+plt.show()
+
+# do chinh xac
+a = 0
+for i in range (len(y_predict)):
+    if y_predict[i] < 0.5 :
+        y_predict = 0
+    else:
+        y_predict = 1
+    if y_predict == y[i]:
+        a += 1 
+print('chinh xac' + str(a/len(y_predict)) + '%')
+
+# hien thi du lieu sau khi phan chia
+a1 = []
+a0 = []
+for i in range (len(y_predict)):
+    if y_predict == 1 :
+        a1.append(x[i])
+    else:
+        a0.append(x[i])
+z1 = np.array(a1)
+z0 = np.array(a0)
+plt.scatter(z1[:,0] , z1[:,1],c = 'red')
+plt.scatter(z0[:,0],z0[:,1],c = 'blue')
+plt.show()
+
+# nhap du lieu du doan 
+input = [[20.00,30000.00]]
+need_pre = np.array(input)
+need_pre[0,0] /= 60
+need_pre[0,1] /= 150000
+# du doan 
+ones = np.ones(len(need_pre),1)
+need_pre = np.concatenate((ones,need_pre),axis = 1)
+result = sigmoid(np.dot(need_pre,w))
+print(result)
